@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="orderDetailVBox" alignment="TOP_CENTER" minHeight="350.0" minWidth="550.0" spacing="10" style="-fx-background-color: #fffec8;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+    <Label style="-fx-font-size: 24px;" text="Pizza Order">
+      <padding>
+         <Insets top="5.0" />
+      </padding></Label>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Order Number">
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin></Label>
+        <TextField fx:id="orderNumberField" promptText="Enter Order Number" />
+    </HBox>
+
+    <TextArea fx:id="orderDetailsTextArea" editable="false" prefHeight="200" prefWidth="600.0" />
+
+    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" spacing="10">
+        <VBox alignment="CENTER_RIGHT">
+            <Label text="subtotal $" />
+            <TextField fx:id="subtotalField" editable="false" text="0.00" />
+        </VBox>
+        <VBox alignment="CENTER_RIGHT">
+            <Label text="sales tax $" />
+            <TextField fx:id="salesTaxField" editable="false" text="0.00" />
+        </VBox>
+        <VBox alignment="CENTER_RIGHT">
+            <Label text="order total $" />
+            <TextField fx:id="orderTotalField" editable="false" text="0.00" />
+        </VBox>
+        <Button prefWidth="71.0" text="Remove Pizza">
+         <HBox.margin>
+            <Insets left="20.0" top="14.0" />
+         </HBox.margin></Button>
+        <Button prefWidth="71.0" text="Place Order">
+         <HBox.margin>
+            <Insets top="14.0" />
+         </HBox.margin></Button>
+    </HBox>
+</VBox>
