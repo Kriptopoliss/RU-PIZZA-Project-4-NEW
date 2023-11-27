@@ -52,7 +52,6 @@
                                     <children>
                                         <ComboBox id="sizeComboBox" fx:id="sizeComboBox" prefHeight="22.0" prefWidth="90.0">
                                             <items>
-                                                <!-- Placeholder items, replace with actual types -->
                                                 <FXCollections fx:factory="observableArrayList">
                                                 </FXCollections>
                                             </items>

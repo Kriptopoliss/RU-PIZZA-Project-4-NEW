@@ -52,7 +52,6 @@
                                     <children>
                                         <ComboBox id="sizeComboBox" fx:id="sizeComboBox" prefHeight="22.0" prefWidth="90.0">
                                             <items>
-                                                <!-- Placeholder items, replace with actual types -->
                                                 <FXCollections fx:factory="observableArrayList">
                                                 </FXCollections>
                                             </items>
@@ -152,7 +151,7 @@
                                 <Insets left="-40.0" />
                             </padding>
                         </HBox>
-                        <Button fx:id="addToOrderButton"  prefHeight="22.0" prefWidth="95.0" text="Add to order">
+                        <Button fx:id="addToOrderButton"  prefHeight="22.0" prefWidth="95.0" text="Add to order" onMouseClicked="#handleAddToOrder">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Button>

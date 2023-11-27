@@ -50,7 +50,11 @@ public abstract class Pizza {
         return "Size: " + size + ", Sauce: " + sauce + ", Extra Sauce: " + extraSauce + ", Extra Cheese: " + extraCheese + ", Toppings: " + toppings;
     }
 
+    // Calculates additional price for extra Cheese or Sauce
     protected double additionalCost() {
-        return 0;
+        int additionalPrice = 0;
+        if(extraSauce || extraCheese) additionalPrice+=1;
+        if(extraSauce && extraCheese) additionalPrice+=2;
+        return additionalPrice;
     }
 }

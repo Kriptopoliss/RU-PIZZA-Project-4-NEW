@@ -1,0 +1,160 @@
+package project4;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.util.ArrayList;
+
+
+public class OrderSpecialtyController {
+
+    @FXML
+    private ImageView pizzaImage;
+
+    @FXML
+    private ComboBox<String> pizzaType;
+
+    @FXML
+    private RadioButton smallSize, mediumSize, largeSize;
+
+    @FXML
+    private ToggleGroup sizeToggleGroup;
+
+    @FXML
+    private ListView<Topping> toppingsListView;
+
+    @FXML
+    private TextField sauceTextField, totalPrice;
+
+    @FXML
+    private CheckBox extraSauce, extraCheese;
+
+    @FXML
+    private Button addToOrder;
+
+    @FXML
+    private Label priceLabel;
+
+
+    @FXML
+    public void initialize() {
+        pizzaType.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");    // Populate size choices
+
+        pizzaType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateToppingsAndSauce(newValue);
+        });
+
+        sauceTextField.setEditable(false);
+        totalPrice.setEditable(false);
+        pizzaType.valueProperty().addListener((obs, oldVal, newVal) -> calculatePrice());
+        extraSauce.selectedProperty().addListener((obs, oldVal, newVal) -> calculatePrice());
+        extraCheese.selectedProperty().addListener((obs, oldVal, newVal) -> calculatePrice());
+    }
+
+    private void calculatePrice() {
+        if (isPizzaValid()) {
+            String sauceText = sauceTextField.getText().toUpperCase();
+            Sauce sauce = Sauce.valueOf(sauceText);
+            boolean eS = extraSauce.isSelected();
+            boolean eC = extraCheese.isSelected();
+            ArrayList<Topping> selectedToppings = new ArrayList<>();
+        /// NEED TO IMPLEMENT SIZE BUTTONS TO GET SIZE
+            Pizza pizza = PizzaMaker.createPizza("build your own", size, sauce, extraSauce, extraCheese, selectedToppings);
+            double price = pizza.getPrice();
+
+            totalPrice.setText(String.format("$%.2f", price));
+        }
+    }
+
+    public void setDeluxe() {
+        toppingsListView.getItems().clear();
+        toppingsListView.getItems().addAll(Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER, Topping.ONION, Topping.MUSHROOM);
+        sauceTextField.setText("tomato");
+        updatePizzaImage("Deluxe");
+    }
+
+    public void setSupreme() {
+        toppingsListView.getItems().clear();
+        toppingsListView.getItems().addAll(Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER,
+                Topping.ONION, Topping.MUSHROOM, Topping.BLACK_OLIVE, Topping.HAM);
+        sauceTextField.setText("tomato");
+        updatePizzaImage("Supreme");
+    }
+
+    public void setSeafood() {
+        toppingsListView.getItems().clear();
+        toppingsListView.getItems().addAll(Topping.SHRIMP, Topping.SQUID, Topping.CRAB_MEAT);
+        sauceTextField.setText("alfredo");
+        updatePizzaImage("SeaFood");
+    }
+
+    public void setMeatzza() {
+        toppingsListView.getItems().clear();
+        toppingsListView.getItems().addAll(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM);
+        sauceTextField.setText("tomato");
+        updatePizzaImage("Meatzza");
+    }
+
+    public void setPepperoni() {
+        toppingsListView.getItems().clear();
+        toppingsListView.getItems().addAll(Topping.PEPPERONI);
+        sauceTextField.setText("tomato");
+        updatePizzaImage("Pepperoni");
+    }
+
+    private void updateToppingsAndSauce(String pizzaType) {
+        switch (pizzaType) {
+            case "Deluxe":
+                setDeluxe();
+                break;
+            case "Supreme":
+                setSupreme();
+                break;
+            case "Seafood":
+                setSeafood();
+                break;
+            case "Meatzza":
+                setMeatzza();
+                break;
+            case "Pepperoni":
+                setPepperoni();
+                break;
+            default:
+                break;
+        }
+    }
+    private void updatePizzaImage(String pizzaType) {
+        if (pizzaType != null && !pizzaType.isEmpty()) {
+            String imageName = pizzaType.substring(0, 1).toUpperCase() + pizzaType.substring(1).toLowerCase() + ".png";
+            String imagePath = "/" + imageName; // Modify as per your image paths
+            try {
+                Image image = new Image(getClass().getResourceAsStream(imagePath));
+                pizzaImage.setImage(image);
+            } catch (Exception e) {
+                System.out.println("Image not found: " + imagePath);
+                pizzaImage.setImage(new Image("pizza.png"));
+            }
+        }
+    }
+    private boolean isPizzaValid() {
+        // Check if Type is selected
+        if (pizzaType.getValue() == null) {
+            showAlert("Warning", "Please select a pizza type.");
+            return false;
+        }
+
+        // If everything is fine
+        return true;
+    }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
+}

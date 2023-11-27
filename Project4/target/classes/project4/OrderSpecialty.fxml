@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane style="-fx-min-width: 400;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-min-width: 400;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project4.OrderSpecialtyController">
     <children>
-        <VBox alignment="TOP_CENTER" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <VBox alignment="TOP_CENTER" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" >
             <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -29,7 +29,7 @@
                             <ImageView fx:id="pizzaImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                 <!-- Replace with your image path -->
                                 <image>
-                                    <Image url="@../build.png" />
+                                    <Image url="@../Secret.png" />
                                 </image>
                             </ImageView>
                      </children>
@@ -41,12 +41,9 @@
                      <children>
                             <HBox spacing="20.0">
                                 <children>
-                                    <ComboBox id="orderSpecialtyType" fx:id="pizzaTypeComboBox" prefHeight="22.0" prefWidth="90.0">
+                                    <ComboBox id="pizzaType" fx:id="pizzaType" prefHeight="22.0" prefWidth="90.0">
                                         <items>
-                                            <!-- Placeholder items, replace with actual types -->
                                             <FXCollections fx:factory="observableArrayList">
-                                                <String fx:value="Deluxe" />
-                                                <!-- Add other pizza types here -->
                                             </FXCollections>
                                         </items>
                                     </ComboBox>
@@ -79,12 +76,9 @@
                     <children>
                         <VBox alignment="TOP_LEFT" spacing="5.0">
                             <Label text="Toppings" />
-                            <ListView id="orderSpecialtyToppings" fx:id="toppingsListView" prefHeight="100.0" prefWidth="150.0">
-                                <!-- Placeholder items, replace with actual toppings -->
+                            <ListView id="toppingListView" fx:id="toppingsListView" prefHeight="100.0" prefWidth="150.0">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="Sausage" />
-                                        <!-- Add other toppings here -->
                                     </FXCollections>
                                 </items>
                             </ListView>
@@ -95,11 +89,11 @@
                         <VBox spacing="5.0">
                             <Label text="Sauce" />
                             <TextField fx:id="sauceTextField" promptText="tomato" />
-                            <CheckBox fx:id="extraSauceCheckBox" text="extra sauce">
+                            <CheckBox id="extraSauce" fx:id="extraSauce" text="extra sauce">
                         <VBox.margin>
                            <Insets />
                         </VBox.margin></CheckBox>
-                            <CheckBox fx:id="extraCheeseCheckBox" text="extra cheese" />
+                            <CheckBox id="extraCheese" fx:id="extraCheese" text="extra cheese" />
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -118,13 +112,13 @@
                               <Insets top="5.0" />
                            </padding>
                         </Label>
-                        <TextField id="orderSpecialtyTotal" prefHeight="22.0" prefWidth="106.0" />
+                        <TextField fx:id="totalPrice" prefHeight="22.0" prefWidth="106.0" />
                      </children>
                      <padding>
                         <Insets left="-50.0" />
                      </padding>
                   </HBox>
-                        <Button fx:id="addToOrderButton" text="Add to order" />
+                        <Button id="addToOrder" fx:id="addToOrder" text="Add to order" />
                     </children>
                <padding>
                   <Insets bottom="10.0" top="20.0" />
