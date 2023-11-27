@@ -2,8 +2,13 @@ package project4;
 
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -24,6 +29,8 @@ public class BuildYourOwnController {
     private Button addToOrderButton;
     @FXML
     private ImageView pizzaImage;
+    @FXML
+    private Button backButtonBYO;
     private final int MAX_TOPPINGS = 7;
 
 
@@ -149,6 +156,24 @@ public class BuildYourOwnController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void loadScene(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) backButtonBYO.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void loadMainMenu(MouseEvent event) {
+        loadScene("/project4/MainMenu.fxml");
     }
 
 }

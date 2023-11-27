@@ -1,9 +1,14 @@
 package project4;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -35,12 +40,20 @@ public class OrderSpecialtyController {
     private Button addToOrder;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private Label priceLabel;
+
+    @FXML
+    private ComboBox<Size> sizeComboBoxSpecial;
+
 
 
     @FXML
     public void initialize() {
         pizzaType.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");    // Populate size choices
+        sizeComboBoxSpecial.getItems().addAll(Size.SMALL, Size.MEDIUM, Size.LARGE);    // Populate size choices
 
         pizzaType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             updateToppingsAndSauce(newValue);
@@ -49,6 +62,7 @@ public class OrderSpecialtyController {
         sauceTextField.setEditable(false);
         totalPrice.setEditable(false);
         pizzaType.valueProperty().addListener((obs, oldVal, newVal) -> calculatePrice());
+        sizeComboBoxSpecial.valueProperty().addListener((obs, oldVal, newVal) -> calculatePrice());
         extraSauce.selectedProperty().addListener((obs, oldVal, newVal) -> calculatePrice());
         extraCheese.selectedProperty().addListener((obs, oldVal, newVal) -> calculatePrice());
     }
@@ -56,12 +70,14 @@ public class OrderSpecialtyController {
     private void calculatePrice() {
         if (isPizzaValid()) {
             String sauceText = sauceTextField.getText().toUpperCase();
+            Size size = sizeComboBoxSpecial.getValue();
             Sauce sauce = Sauce.valueOf(sauceText);
             boolean eS = extraSauce.isSelected();
             boolean eC = extraCheese.isSelected();
             ArrayList<Topping> selectedToppings = new ArrayList<>();
+
         /// NEED TO IMPLEMENT SIZE BUTTONS TO GET SIZE
-            Pizza pizza = PizzaMaker.createPizza("build your own", size, sauce, extraSauce, extraCheese, selectedToppings);
+            Pizza pizza = PizzaMaker.createPizza("build your own", size, sauce, eS, eC, selectedToppings);
             double price = pizza.getPrice();
 
             totalPrice.setText(String.format("$%.2f", price));
@@ -95,6 +111,11 @@ public class OrderSpecialtyController {
         toppingsListView.getItems().addAll(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM);
         sauceTextField.setText("tomato");
         updatePizzaImage("Meatzza");
+    }
+
+    @FXML
+    private void loadSpecialtyPizza(MouseEvent event) {
+        loadScene("/project4/OrderSpecialty.fxml");
     }
 
     public void setPepperoni() {
@@ -154,6 +175,24 @@ public class OrderSpecialtyController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void loadScene(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void loadMainMenu(MouseEvent event) {
+        loadScene("/project4/MainMenu.fxml");
     }
 
 
