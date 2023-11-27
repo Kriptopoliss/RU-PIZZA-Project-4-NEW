@@ -11,6 +11,7 @@ public class BuildYourOwn extends Pizza {
     @Override
     public double getPrice() {
         double basePrice;
+
         switch (this.size) {
             case MEDIUM:
                 basePrice = 10.99; // Base price for medium

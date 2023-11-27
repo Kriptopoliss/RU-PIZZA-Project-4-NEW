@@ -143,7 +143,7 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="backButtonBYO" mnemonicParsing="false" onMouseClicked="#loadMainMenu" text="Back" />
+                  <Button fx:id="backButtonBYO" mnemonicParsing="false" onMouseClicked="#goMainMenu" text="Back" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" top="20.0" />

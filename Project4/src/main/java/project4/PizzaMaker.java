@@ -20,19 +20,19 @@ public class PizzaMaker {
 
         switch (type.toLowerCase()) {
             case "deluxe":
-                pizza = new Deluxe(size); // Assuming Deluxe constructor
+                pizza = new Deluxe(size,extraSauce,extraCheese); // Assuming Deluxe constructor
                 break;
             case "supreme":
-                pizza = new Supreme(size); // Assuming Supreme constructor
+                pizza = new Supreme(size,extraSauce,extraCheese); // Assuming Supreme constructor
                 break;
             case "meatzza":
-                pizza = new Meatzza(size); // Assuming Meatzza constructor
+                pizza = new Meatzza(size,extraSauce,extraCheese); // Assuming Meatzza constructor
                 break;
             case "seafood":
-                pizza = new Seafood(size); // Assuming Seafood constructor
+                pizza = new Seafood(size,extraSauce,extraCheese); // Assuming Seafood constructor
                 break;
             case "pepperoni":
-                pizza = new Pepperoni(size); // Assuming Pepperoni constructor
+                pizza = new Pepperoni(size,extraSauce,extraCheese); // Assuming Pepperoni constructor
                 break;
             case "build your own":
                 pizza = new BuildYourOwn(size, sauce, extraSauce, extraCheese, toppings);

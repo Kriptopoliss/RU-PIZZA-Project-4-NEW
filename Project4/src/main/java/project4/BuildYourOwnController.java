@@ -129,6 +129,7 @@ public class BuildYourOwnController {
 
         if(selectedToppingListView.getItems().size()<3){
             showAlert("Insufficient Toppings", "Please select at least 3 toppings");
+            return;
         } else pizza = PizzaMaker.createPizza("build your own", size, sauce, extraSauce, extraCheese, selectedToppings);
 
         calculatePrice(); // Update the price
@@ -172,7 +173,7 @@ public class BuildYourOwnController {
     }
 
     @FXML
-    private void loadMainMenu(MouseEvent event) {
+    private void goMainMenu(MouseEvent event) {
         loadScene("/project4/MainMenu.fxml");
     }
 

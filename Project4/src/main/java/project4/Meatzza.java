@@ -5,13 +5,15 @@ import java.util.Arrays;
 
 public class Meatzza extends Pizza {
 
-    public Meatzza(Size size) {
-        super(size, Sauce.TOMATO, new ArrayList<Topping> (Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM)));
+    public Meatzza(Size size, Boolean eC, Boolean eS) {
+        super(size, Sauce.TOMATO,eS,eC, new ArrayList<Topping> (Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM)));
     }
 
     @Override
     public double getPrice() {
         double basePrice = 16.99; // Small size base price
+        if(this.extraCheese) basePrice+=1;
+        if(this.extraSauce) basePrice+=1;
         switch(this.size){
             case LARGE:
                 return basePrice + 4.00;
