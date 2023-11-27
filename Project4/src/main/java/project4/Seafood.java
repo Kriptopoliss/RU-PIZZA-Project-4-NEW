@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Seafood extends Pizza {
 
     public Seafood(Size size) {
-        super(size, Sauce.ALFREDO, (ArrayList<Topping>) Arrays.asList(Topping.SHRIMP, Topping.SQUID, Topping.CRAB_MEAT));
+        super(size, Sauce.ALFREDO, new ArrayList<Topping> (Arrays.asList(Topping.SHRIMP, Topping.SQUID, Topping.CRAB_MEAT)));
     }
 
     @Override

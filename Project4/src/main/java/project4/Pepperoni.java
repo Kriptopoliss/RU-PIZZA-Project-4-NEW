@@ -7,7 +7,7 @@ import java.util.Collections;
 public class Pepperoni extends Pizza {
 
     public Pepperoni(Size size) {
-        super(size, Sauce.TOMATO, (ArrayList<Topping>) Arrays.asList(Topping.SAUSAGE));
+        super(size, Sauce.TOMATO, new ArrayList<Topping> (Arrays.asList(Topping.PEPPERONI)));
     }
 
     @Override

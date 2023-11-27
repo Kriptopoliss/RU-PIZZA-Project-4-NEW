@@ -22,7 +22,7 @@ public class BuildYourOwn extends Pizza {
                 basePrice = 8.99; // Base price for small
         }
 
-        double toppingPrice = 1.00; // Price per additional topping
+        double toppingPrice = 1.49; // Price per additional topping
         int includedToppings = 3; // The first three toppings are included in base price
         int extraToppings = Math.max(this.toppings.size() - includedToppings, 0);
 

@@ -48,6 +48,8 @@ public class OrderSpecialtyController {
     @FXML
     private ComboBox<Size> sizeComboBoxSpecial;
 
+    private Sauce sauce;
+
 
 
     @FXML
@@ -69,25 +71,26 @@ public class OrderSpecialtyController {
 
     private void calculatePrice() {
         if (isPizzaValid()) {
-            String sauceText = sauceTextField.getText().toUpperCase();
+            String sauceText = sauceTextField.getText().toUpperCase().trim();
             Size size = sizeComboBoxSpecial.getValue();
-            Sauce sauce = Sauce.valueOf(sauceText);
             boolean eS = extraSauce.isSelected();
             boolean eC = extraCheese.isSelected();
             ArrayList<Topping> selectedToppings = new ArrayList<>();
 
         /// NEED TO IMPLEMENT SIZE BUTTONS TO GET SIZE
-            Pizza pizza = PizzaMaker.createPizza("build your own", size, sauce, eS, eC, selectedToppings);
-            double price = pizza.getPrice();
-
-            totalPrice.setText(String.format("$%.2f", price));
+            Pizza pizza = PizzaMaker.createPizza(pizzaType.getValue(), size, sauce, eS, eC, selectedToppings);
+            if(size != null) {
+                double price = pizza.getPrice();
+                totalPrice.setText(String.format("$%.2f", price));
+            }
         }
     }
 
     public void setDeluxe() {
         toppingsListView.getItems().clear();
         toppingsListView.getItems().addAll(Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER, Topping.ONION, Topping.MUSHROOM);
-        sauceTextField.setText("tomato");
+        sauceTextField.setText("TOMATO");
+        sauce = Sauce.TOMATO;
         updatePizzaImage("Deluxe");
     }
 
@@ -95,21 +98,24 @@ public class OrderSpecialtyController {
         toppingsListView.getItems().clear();
         toppingsListView.getItems().addAll(Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER,
                 Topping.ONION, Topping.MUSHROOM, Topping.BLACK_OLIVE, Topping.HAM);
-        sauceTextField.setText("tomato");
+        sauceTextField.setText("TOMATO");
+        sauce = Sauce.TOMATO;
         updatePizzaImage("Supreme");
     }
 
     public void setSeafood() {
         toppingsListView.getItems().clear();
         toppingsListView.getItems().addAll(Topping.SHRIMP, Topping.SQUID, Topping.CRAB_MEAT);
-        sauceTextField.setText("alfredo");
+        sauceTextField.setText("ALFREDO");
+        sauce = Sauce.ALFREDO;
         updatePizzaImage("SeaFood");
     }
 
     public void setMeatzza() {
         toppingsListView.getItems().clear();
         toppingsListView.getItems().addAll(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM);
-        sauceTextField.setText("tomato");
+        sauceTextField.setText("TOMATO");
+        sauce = Sauce.TOMATO;
         updatePizzaImage("Meatzza");
     }
 
@@ -121,7 +127,8 @@ public class OrderSpecialtyController {
     public void setPepperoni() {
         toppingsListView.getItems().clear();
         toppingsListView.getItems().addAll(Topping.PEPPERONI);
-        sauceTextField.setText("tomato");
+        sauceTextField.setText("TOMATO");
+        sauce = Sauce.TOMATO;
         updatePizzaImage("Pepperoni");
     }
 
