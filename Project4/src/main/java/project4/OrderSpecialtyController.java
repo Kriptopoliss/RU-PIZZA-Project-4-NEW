@@ -49,6 +49,7 @@ public class OrderSpecialtyController {
     private ComboBox<Size> sizeComboBoxSpecial;
 
     private Sauce sauce;
+    public ArrayList<Pizza> pizzaListSpecial = new ArrayList<>();
 
 
 
@@ -212,9 +213,12 @@ public class OrderSpecialtyController {
 
         calculatePrice(); // Update the price
         int orderNumber = (OrderNumberGenerator.getInstance().generateOrderNumber());
-        Order order1 = new Order(orderNumber); // generates a unique order number
-        order1.addPizza(pizza);
-        showAlert("Success", "Order #" + orderNumber + " placed successfully");
+        pizzaListSpecial.add(pizza); // Add pizza to the current order
+        showAlert("Success", "Pizza added to Order");
+    }
+
+    public ArrayList<Pizza> getPizzaListSpecial(){
+        return this.pizzaListSpecial;
     }
 
 

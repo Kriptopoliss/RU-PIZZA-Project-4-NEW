@@ -23,4 +23,7 @@ public class Deluxe extends Pizza {
                 return basePrice;
         }
     }
+    public String toString() {
+        return String.format("[Deluxe] %s,%s,%s,%s", toppings,size,sauce,getPrice());
+    }
 }

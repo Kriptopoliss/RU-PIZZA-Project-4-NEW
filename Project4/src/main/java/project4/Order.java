@@ -12,6 +12,7 @@ public class Order {
     }
 
 
+
     public void addPizza(Pizza pizza){
         pizzas.add(pizza);
     }
@@ -25,6 +26,10 @@ public class Order {
             total += pizza.getPrice();
         }
         return total;
+    }
+
+    public ArrayList<Pizza> getPizzas(){
+        return this.pizzas;
     }
 
     public int getOrderNumber(){

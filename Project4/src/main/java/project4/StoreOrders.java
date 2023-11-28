@@ -17,13 +17,21 @@ public class StoreOrders {
         orders.remove(order);
     }
 
-    public Order getOrder(int orderNumber) {
-        for (Order order : orders) {
-            if (order.getOrderNumber() == orderNumber) {
-                return order;
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public int getOrderPos(int id){
+        for(int i=0; i<orders.size(); i++){
+            if(orders.get(i).getOrderNumber() == id){
+                return i;
             }
         }
-        return null;
+        return -1;
+    }
+
+    public int getLength(){
+        return orders.size();
     }
 
     @Override

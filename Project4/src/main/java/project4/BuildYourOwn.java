@@ -30,4 +30,8 @@ public class BuildYourOwn extends Pizza {
 
         return basePrice + (extraToppings * toppingPrice) + super.additionalCost();
     }
+    @Override
+    public String toString() {
+        return String.format("[Build your own] %s,%s,%s,%s", toppings,size,sauce,getPrice());
+    }
 }

@@ -47,7 +47,7 @@ public abstract class Pizza {
 
     @Override
     public String toString() {
-        return "Size: " + size + ", Sauce: " + sauce + ", Extra Sauce: " + extraSauce + ", Extra Cheese: " + extraCheese + ", Toppings: " + toppings;
+        return String.format("%s,%s,%s,%s", toppings,size,sauce,getPrice());
     }
 
     // Calculates additional price for extra Cheese or Sauce

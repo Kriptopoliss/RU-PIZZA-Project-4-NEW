@@ -6,11 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class MainMenuLaunch extends Application {
+
 
     @Override
     public void start(Stage primaryStage) {
         try {
+
             // Load the main menu FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/project4/MainMenu.fxml"));
             Parent root = loader.load();

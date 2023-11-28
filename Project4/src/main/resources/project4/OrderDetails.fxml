@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="20" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="20" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project4.OrderDetailsController">
     <Label text="Store Orders">
       <font>
          <Font name="System Bold" size="30.0" />

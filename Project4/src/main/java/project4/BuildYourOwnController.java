@@ -32,7 +32,7 @@ public class BuildYourOwnController {
     @FXML
     private Button backButtonBYO;
     private final int MAX_TOPPINGS = 7;
-
+    ArrayList<Pizza> pizzaListBYO = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -69,6 +69,10 @@ public class BuildYourOwnController {
 
             }
         }
+    }
+
+    public ArrayList<Pizza> getPizzaListBYO(){
+        return this.pizzaListBYO;
     }
 
 
@@ -132,12 +136,12 @@ public class BuildYourOwnController {
             return;
         } else pizza = PizzaMaker.createPizza("build your own", size, sauce, extraSauce, extraCheese, selectedToppings);
 
+
         calculatePrice(); // Update the price
-        int orderNumber = (OrderNumberGenerator.getInstance().generateOrderNumber());
-        Order order1 = new Order(orderNumber); // generates a unique order number
-        order1.addPizza(pizza);
-        showAlert("Success", "Order #" + orderNumber + " placed successfully");
+        pizzaListBYO.add(pizza); // Add pizza to the current order
+        showAlert("Success", "Pizza added to Order");
     }
+
 
     private boolean isPizzaValid() {
         // Check if Size is selected
@@ -176,6 +180,8 @@ public class BuildYourOwnController {
     private void goMainMenu(MouseEvent event) {
         loadScene("/project4/MainMenu.fxml");
     }
+
+
 
 }
 
