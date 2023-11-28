@@ -202,5 +202,20 @@ public class OrderSpecialtyController {
         loadScene("/project4/MainMenu.fxml");
     }
 
+    private void handleAddToOrder() {
+        Size size = sizeComboBoxSpecial.getValue();
+        boolean eS = extraSauce.isSelected();
+        boolean eC = extraCheese.isSelected();
+        ArrayList<Topping> selectedToppings = new ArrayList<>();
+
+        Pizza pizza = PizzaMaker.createPizza(pizzaType.getValue(), size, sauce, eS, eC, selectedToppings);
+
+        calculatePrice(); // Update the price
+        int orderNumber = (OrderNumberGenerator.getInstance().generateOrderNumber());
+        Order order1 = new Order(orderNumber); // generates a unique order number
+        order1.addPizza(pizza);
+        showAlert("Success", "Order #" + orderNumber + " placed successfully");
+    }
+
 
 }
