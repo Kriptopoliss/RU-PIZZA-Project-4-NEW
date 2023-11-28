@@ -53,8 +53,8 @@ public abstract class Pizza {
     // Calculates additional price for extra Cheese or Sauce
     protected double additionalCost() {
         int additionalPrice = 0;
-        if(extraSauce || extraCheese) additionalPrice+=1;
-        if(extraSauce && extraCheese) additionalPrice+=2;
+        if(extraSauce) additionalPrice+=1;
+        if(extraCheese) additionalPrice+=1;
         return additionalPrice;
     }
 }
